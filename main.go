@@ -1,18 +1,27 @@
 package main
 
 import (
-	"design-mode/singleton"
-	"fmt"
-	"time"
+	"design-mode/prototype"
+	
 )
 
-// TIP hello
 func main() {
-	for i := 0; i < 5; i++ {
-		go func() {
-			instance := singleton.GetInstance()
-			fmt.Printf("instance:%p\n", instance)
-		}()
+	gasCar := &prototype.GasCar{
+		Brand:  "宝马",
+		Fuel:   "汽油",
+		Color:  "红色",
+		Engine: "1.5T",
 	}
-	time.Sleep(1 * time.Second)
+	electricCar := &prototype.ElectricCar{
+		Brand:  "特斯拉",
+		Fuel:   "电力",
+		Color:  "蓝色",
+		Engine: "1.5T",
+	}
+	for i := 0; i < 10; i++ {
+		gasCarCopy := gasCar.Clone()
+		electricCarCopy := electricCar.Clone()
+		fmt.Println(gasCarCopy)
+		fmt.Println(electricCarCopy)
+	}
 }
