@@ -1,12 +1,13 @@
 package main
 
 import (
-	"design-mode/adapter"
+	"design-mode/decorator"
 	"fmt"
 )
 
 func main() {
-	xmlSystem := &adapter.XMLSystem{}
-	jsonSystem := &adapter.JSONSystem{XMLSystem: xmlSystem}
-	fmt.Println(jsonSystem.Request())
+	drink := decorator.Factor(decorator.NewCoffee(10))
+	drink = decorator.AddMilkDecorator(drink)
+	drink = decorator.AddSugarDecorator(drink)
+	fmt.Println("Coffee cost:", drink.Cost())
 }
