@@ -1,13 +1,16 @@
 package main
 
 import (
-	"design-mode/decorator"
+	"design-mode/flyweight"
 	"fmt"
+	"time"
 )
 
 func main() {
-	drink := decorator.Factor(decorator.NewCoffee(10))
-	drink = decorator.AddMilkDecorator(drink)
-	drink = decorator.AddSugarDecorator(drink)
-	fmt.Println("Coffee cost:", drink.Cost())
-}
+	for i := 0; i < 10; i++ {
+		activity := flyweight.QueryActivity(1)
+		fmt.Println(activity)
+		time.Sleep(1 * time.Second)
+	}
+}	
+ 
